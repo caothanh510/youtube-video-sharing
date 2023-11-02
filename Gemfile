@@ -35,6 +35,19 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Use React on rails library 
+gem "react_on_rails", "= 13.4"
+
+gem "shakapacker", "= 7.1"
+
+# Use Template engine
+gem "haml", "~> 6.2"
+
+gem "haml-rails", "~> 2.1"
+
+# Use Tailwind CSS for stylesheets [https://tailwindcss.com/docs/guides/rails]
+gem "tailwindcss-rails", "~> 2.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
@@ -58,7 +71,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "react_on_rails", "= 13.4"
-
-gem "shakapacker", "= 7.1"
