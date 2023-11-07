@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import Navbars from "./Navbars";
+import ShareMovie from "./ShareMovie";
+import ListVideo from "./ListVideo";
+import Login from "./Login";
 
 function App() {
-  const [count, setCount] = useState(0);
   return (
     <div>
-      <p>You clicked {count} times!</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
+      <Navbars />
+      <ShareMovie />
+      <Login />
+      <ListVideo />
     </div>
   );
 }
