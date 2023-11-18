@@ -5,7 +5,6 @@ import ListVideo from "./ListVideo";
 function Homepage() {
   return (
     <div>
-      <Navbars />
       <ListVideo />
     </div>
   );

@@ -1,13 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Navbars() {
+  const { logged_in, logout, isAuthenticated, user, axiosInstance } = useAuth();
+
+  useEffect(() => {
+    handleAuthorization();
+  }, []);
+
+  useEffect(() => {
+    refreshPagerefreshCSRFToken();
+  }, [isAuthenticated]);
+
+  const handleAuthorization = async () => {
+    let app = document.querySelector("#app");
+    let user = app.getAttribute("data-user");
+    logged_in(user);
+  };
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosInstance().delete("/users/sign_out");
+
+      if (response.status == 200) {
+        logout(response.data);
+      }
+    } catch (error) {
+      alert("Something when wrong. Please try again!");
+    }
+  };
+
   return (
     <>
-      <nav className="bg-gray-800">
+      <nav className="bg-gray-800 mb-2">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <a href="https://www.youtube.com/">
+          <div className="flex items-center justify-between h-auto">
+            <div className="flex items-center p-2">
+              <a href="/">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Circle-icons-video.svg/1024px-Circle-icons-video.svg.png"
                   alt="YouTube Logo"
@@ -15,55 +46,41 @@ export default function Navbars() {
                 />
               </a>
             </div>
-            <div className="hidden md:block">
-              <a
-                className="text-gray-300 hover:text-white px-3 py-2"
-                href="/login"
-              >
-                Login
-              </a>
-              <a
-                className="text-gray-300 hover:text-white px-3 py-2"
-                href="/sign_up"
-              >
-                Sign Up
-              </a>
-            </div>
-            <div className="md:hidden">
-              <button className="text-gray-300 hover:text-white focus:outline-none focus:text-white">
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+            <div className="flex md:flex-row flex-col align-center items-center space-x-4 p-2">
+              {isAuthenticated ? (
+                <>
+                  <p className="text-gray-300">Welcome {user}</p>
+                  <NavLink
+                    className="rounded bg-sky-500/100 text-white py-1 px-2 "
+                    to="/share"
+                  >
+                    Share a movie
+                  </NavLink>
+                  <NavLink
+                    className="text-gray-300 hover:text-white px-3 py-2"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    to="/users/sign_in"
+                    className="text-gray-300 hover:text-white px-3 py-2"
+                  >
+                    Login
+                  </NavLink>
 
-        <div className="md:hidden hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              className="text-gray-300 hover:text-white block px-3 py-2"
-              href="#"
-            >
-              Login
-            </a>
-            <a
-              className="text-gray-300 hover:text-white block px-3 py-2"
-              href="#"
-            >
-              Sign Up
-            </a>
+                  <NavLink
+                    to="/users/sign_up"
+                    className="text-gray-300 hover:text-white px-3 py-2"
+                  >
+                    SignUp
+                  </NavLink>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </nav>

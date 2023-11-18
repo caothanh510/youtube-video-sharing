@@ -6,3 +6,9 @@ import { application } from "./application";
 
 import ReactController from "./react_controller";
 application.register("react", ReactController);
+
+import LoginController from "./login_controller";
+application.register("login", LoginController);
+
+import SignUpController from "./sign_up_controller";
+application.register("sign_up", SignUpController);
