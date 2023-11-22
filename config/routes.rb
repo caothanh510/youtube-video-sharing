@@ -1,4 +1,12 @@
+require "sidekiq/web"
+Sidekiq::Web.app_url = "/"
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => "/sidekiq"
+
+  # action cable server
+  mount ActionCable.server => '/cable'
+  
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,4 +18,7 @@ Rails.application.routes.draw do
   root "pages#index"
 
   get '/refresh_csrf', to: 'application#refresh_csrf'
+
+  resources :shares
+  get '/share', to: 'shares#new'
 end

@@ -34,7 +34,7 @@ export default function Navbars() {
 
   return (
     <>
-      <nav className="bg-gray-800 mb-2">
+      <nav className="bg-gray-800 mb-2 fixed w-full top-0">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-auto">
             <div className="flex items-center p-2">

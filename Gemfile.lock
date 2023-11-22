@@ -54,6 +54,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.1.1)
       activesupport (= 7.1.1)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (7.1.1)
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
@@ -114,6 +118,17 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
+    draper (4.0.2)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
+      ruby2_keywords
     drb (2.1.1)
       ruby2_keywords
     error_highlight (0.5.1)
@@ -169,6 +184,7 @@ GEM
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.2.0)
     pg (1.5.4)
     psych (5.1.1.1)
       stringio
@@ -177,6 +193,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.8)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -198,6 +216,10 @@ GEM
       activesupport (= 7.1.1)
       bundler (>= 1.15.0)
       railties (= 7.1.1)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -223,6 +245,8 @@ GEM
     regexp_parser (2.8.2)
     reline (0.3.9)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -250,6 +274,13 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
+    sidekiq (7.2.0)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     simple_form (5.3.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -299,17 +330,24 @@ DEPENDENCIES
   database_cleaner
   debug
   devise (~> 4.9)
+  dotenv-rails
+  draper
   error_highlight (>= 0.4.0)
   factory_bot_rails
   faker
   jbuilder
   jsbundling-rails
+  pagy
   pg (~> 1.1)
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.1)
+  rails-controller-testing
   redis (>= 4.0.1)
   rspec-rails
   selenium-webdriver
+  shoulda-matchers
+  sidekiq
   simple_form
   sprockets-rails
   stimulus-rails

@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Message from "./Message";
 import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const {
     register,
+    reset,
     message,
     isAuthenticated,
     axiosInstance,
@@ -16,6 +19,7 @@ function SignUp() {
 
   useEffect(() => {
     refreshPagerefreshCSRFToken();
+    reset();
   }, [isAuthenticated]);
 
   const handleRegister = async (event) => {
@@ -30,6 +34,12 @@ function SignUp() {
         },
       });
       register(response.data);
+
+      if (response.data.status === "success") {
+        setTimeout(() => {
+          navigate("/users/sign_in");
+        }, 2000);
+      }
     } catch (error) {
       alert("Something when wrong. Please try again!");
     }
