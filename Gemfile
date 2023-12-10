@@ -54,6 +54,22 @@ gem "faker"
 
 gem 'simple_form'
 
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
+
+# Background job 
+gem 'sidekiq'
+
+gem 'dotenv-rails', groups: [:development, :test]
+
+# Pagination
+gem 'pagy'
+
+# Decorator for models
+gem 'draper'
+
+gem 'rails-controller-testing'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
@@ -78,6 +94,8 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :development, :test do 

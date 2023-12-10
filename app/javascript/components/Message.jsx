@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Message({ status, message }) {
   let statusColor = {
-    error: "red",
-    success: "green",
-    info: "blue",
+    error: "text-rose-700 border-rose-500",
+    success: "text-green-700 border-emerald-500",
   }[status];
 
   return (
-    <div
-      className={`bg-${statusColor}-100 border-t border-b border-${statusColor}-500 text-${statusColor}-700 px-4 py-3 mb-3`}
-      role="alert"
-    >
-      <p className="text-sm">{message}</p>
-    </div>
+    message && (
+      <div
+        className={`border-t border-b ${statusColor} px-4 py-3 mb-3`}
+        role="alert"
+      >
+        <p className="text-sm">{message}</p>
+      </div>
+    )
   );
 }
 

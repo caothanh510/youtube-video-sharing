@@ -12,6 +12,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render json: { status: 'error', message: resource.errors.full_messages.join(', ') }
     end
   end
-
-  private
 end

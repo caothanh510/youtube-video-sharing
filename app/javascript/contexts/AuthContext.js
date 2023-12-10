@@ -85,6 +85,10 @@ function AuthProvider({ children }) {
     app.setAttribute("data-user", "");
   }
 
+  function reset() {
+    dispatch({ type: "message", payload: "" });
+  }
+
   function axiosInstance() {
     let payload = axios.create({
       baseURL: window.location.origin, // Your API base URL
@@ -106,6 +110,7 @@ function AuthProvider({ children }) {
         axiosInstance,
         register,
         refreshPagerefreshCSRFToken,
+        reset,
       }}
     >
       {children}

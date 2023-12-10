@@ -4,13 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, message, isAuthenticated, refreshCSRFToken, axiosInstance } =
-    useAuth();
-  // const navigate = useNavigate();
+  const {
+    login,
+    reset,
+    message,
+    isAuthenticated,
+    refreshPagerefreshCSRFToken,
+    axiosInstance,
+  } = useAuth();
 
   useEffect(() => {
+    reset();
     if (isAuthenticated) {
       navigate("/");
     }
