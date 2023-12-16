@@ -54,8 +54,8 @@ RSpec.describe SharesController, type: :controller do
 
       it 'renders a JSON response with errors for the new share' do
         post :create, params: params, format: :json
-        data = JSON.parse(response.body)
 
+        data = JSON.parse(response.body)
         expect(response).to have_http_status(:success)
         expect(response.content_type).to eq('application/json; charset=utf-8')
         expect(data['status']).to eq('error')

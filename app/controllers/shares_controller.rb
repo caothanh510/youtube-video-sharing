@@ -13,8 +13,8 @@ class SharesController < ApplicationController
 
   # POST /shares
   def create
-    if @share.valid? && @share.save
-      NotificationJob.perform_later(current_user.id)
+    if @share.valid?
+      NotificationJob.perform_later(current_user.id) if create_resource
       render json: { status: 'success', message: 'Shared successful', data: @share }
     else
       render json: { status: 'error', message: @share.errors.full_messages.join(', ') }
@@ -24,18 +24,17 @@ class SharesController < ApplicationController
   private
 
   def build_share
-    share_attributes = share_params.merge(
-      user: current_user,
-      additional_data: build_additional_data
-    )
-  
-    @share ||= Share.new(share_attributes).tap do |share|
-      share.additional_data['shared_by'] = current_user.email
-    end
+    @share ||= Share.new(share_params.merge(user: current_user))
+  end
+
+  def create_resource 
+    @share.additional_data = build_additional_data
+    @share.save
   end
 
   def build_additional_data
     additional_data = YoutubeVideoService.new(url: share_params[:url]).perform
+    additional_data['shared_by'] = current_user.email
     additional_data
   end
    
