@@ -6,13 +6,19 @@ class YoutubeVideoService
   end
 
   def perform 
-    return {} unless get_youtube_info && get_youtube_info['items'].first
-    data = get_youtube_info['items'].first
-    {
-      id: data['id'],
-      title: data['snippet']['title'],
-      description: data['snippet']['description']
-    }
+    begin
+      data = get_youtube_info 
+      return {} unless data.present?
+      {
+        id: data.id,
+        title: data.snippet.title,
+        description: data.snippet.description,
+      }
+    rescue StandardError => e
+      Rails.logger.error("Youtube video service: #{e.message}")
+      Rails.logger.error(e.backtrace.join("\n"))
+      false
+    end
   end
 
   private
@@ -20,7 +26,13 @@ class YoutubeVideoService
   def get_youtube_info
     return unless url.present?
     video_id = CGI::parse(url).flatten.second.last
-    youtube_data = Net::HTTP.get(URI.parse("https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=#{video_id}&key=#{ENV['YOUTUBE_API_KEY']}"))
-    youtube_data = JSON.parse(youtube_data)
+    response = youtube.list_videos('snippet', id: video_id)
+    response.items.first
+  end
+
+  def youtube
+    @youtube ||= Google::Apis::YoutubeV3::YouTubeService.new
+    @youtube.key = ENV['YOUTUBE_API_KEY']
+    @youtube
   end
 end
