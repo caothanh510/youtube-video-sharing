@@ -1,24 +1,46 @@
-# README
+# Youtube Video Sharing App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Introduction: The main features of this application is:
 
-Things you may want to cover:
+   - User can shares youtube video features and notification for other users
+   - Home page: Listed the youtube video users shared to show detail the description of video
 
-* Ruby version
+2. Installation & Configuration:
 
-* System dependencies
+   - Cloning the repository: `git clone git@github.com:caothanh510/youtube-video-sharing.git`
 
-* Configuration
+   - Installing dependencies:
+   - Gem packge: `bundle install`
+   - Node packge: `npm install`
 
-* Database creation
+3. Database Setup:
 
-* Database initialization
+   - Database Configuration: `config/database.yml`
 
-* How to run the test suite
+   - Database Creation: `rails db:create`
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Running the Application: How to start the development server, access the application in a web browser, and run the test suite.
 
-* Deployment instructions
+- Start Frontend Side: ./bin/dev
 
-* ...
+- Start Server Side: rails s
+
+- Redis: redis-server
+
+6. (BE/FS) Docker Deployment: Instructions for deploying the application using Docker, including building the Docker image and running containers (optional for Backend developers)
+   https://blog.saeloun.com/2023/11/29/rails-7-1-introduces-default-docker-files/
+
+7. Usage: Features Of Application
+
+   - User registration and login:
+
+     - Login: http://127.0.0.1:3000/users/sign_in
+     - SignUp: http://127.0.0.1:3000/users/sign_up
+
+   - Sharing YouTube videos: http://127.0.0.1:3000/share
+
+   - Viewing a list of shared videos: http://127.0.0.1:3000/
+
+   - Real-time notifications for new video shares: When a user shares a new video, other logged-in users should receive a real-time notification about the newly shared video.
+
+8. Troubleshooting: Please create issue while using application here: https://github.com/caothanh510/youtube-video-sharing/issues
