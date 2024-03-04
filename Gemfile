@@ -101,6 +101,6 @@ group :test do
   gem 'rails-controller-testing'
 end
 
-group :development, :test do 
+group :development, :test do
   gem "database_cleaner"
 end
