@@ -11,7 +11,7 @@
 
    - Installing dependencies:
    - Gem packge: `bundle install`
-   - Node packge: `npm install`
+   - Node packge: `yarn install`
 
 3. Database Setup:
 
@@ -28,7 +28,12 @@
 - Redis: redis-server
 
 6. (BE/FS) Docker Deployment: Instructions for deploying the application using Docker, including building the Docker image and running containers (optional for Backend developers)
-   https://blog.saeloun.com/2023/11/29/rails-7-1-introduces-default-docker-files/
+
+   - Initial setup
+
+   1. Build the Docker image: `docker compose build`
+   2. DB setup: `docker compose run --rm web bin/rails db:setup`
+   3. Run app: `docker-compose up`
 
 7. Usage: Features Of Application
 
