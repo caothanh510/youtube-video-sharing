@@ -27,7 +27,7 @@ function ListVideo() {
       setVideos(response.data.data.records);
       setPagy(response.data.data.pagy);
     } catch (error) {
-      alert("Something when wrong. Please try again!");
+      console.log("error", error);
     }
   };
 
