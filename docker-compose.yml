@@ -1,3 +1,44 @@
+x-app: &default-app
+  build:
+    context: "."
+    target: "app"
+    args:
+      - "UID=${UID:-1000}"
+      - "GID=${GID:-1000}"
+      - "RAILS_ENV=${RAILS_ENV:-production}"
+      - "NODE_ENV=${NODE_ENV:-production}"
+  depends_on:
+    postgres:
+      condition: "service_started"
+      required: false
+    redis:
+      condition: "service_started"
+      required: false
+  env_file:
+    - ".env"
+  restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+  stop_grace_period: "3s"
+  tty: true
+  volumes:
+    - "${DOCKER_WEB_VOLUME:-./public:/app/public}"
+
+x-assets: &default-assets
+  build:
+    context: "."
+    target: "assets"
+    args:
+      - "UID=${UID:-1000}"
+      - "GID=${GID:-1000}"
+      - "RAILS_ENV=${RAILS_ENV:-production}"
+      - "NODE_ENV=${NODE_ENV:-production}"
+  env_file:
+    - ".env"
+  profiles: ["assets"]
+  restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+  stop_grace_period: "3s"
+  tty: true
+  volumes:
+    - ".:/app"
 version: "3.8"
 services:
   db:
@@ -16,7 +57,7 @@ services:
       - "6379:6379"
   web:
     build: .
-    command: rails server -b 0.0.0.0
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
       - "3000:3000"
     depends_on:
@@ -28,5 +69,12 @@ services:
     volumes:
       - .:/app
 
+  js:
+    <<: *default-assets
+    command: "yarn build"
+
+  css:
+    <<: *default-assets
+    command: "yarn build:css"
 volumes:
   dbdata:
