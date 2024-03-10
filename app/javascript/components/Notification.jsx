@@ -1,7 +1,7 @@
 import React from "react";
 import { useNotification } from "../contexts/NotificationContext";
 
-const ws = new WebSocket(process.env.CABLE_URL || "ws://localhost:3000/cable");
+const ws = new WebSocket(`ws://${window.location.host}/cable`);
 
 function Notification() {
   const { notification, setNotification } = useNotification();
