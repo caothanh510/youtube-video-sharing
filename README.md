@@ -19,7 +19,7 @@
 
    - Database Creation: `rails db:create`
 
-4. Running the Application: How to start the development server, access the application in a web browser, and run the test suite.
+4. Running the Application:
 
 - Start Frontend Side: ./bin/dev
 
@@ -27,13 +27,20 @@
 
 - Redis: redis-server
 
-6. (BE/FS) Docker Deployment: Instructions for deploying the application using Docker, including building the Docker image and running containers (optional for Backend developers)
+- Run spec: bundle exec rspec
 
-   - Initial setup
+6. (BE/FS) Docker Deployment:
+
+   - Setup On Local
 
    1. Build the Docker image: `docker compose build`
    2. DB setup: `docker compose run --rm web bin/rails db:setup`
    3. Run app: `docker-compose up`
+
+   - Deployment: using heroku.yml to update the config (Dockerfile.production)
+
+   1. heroku stack:set container
+   2. git push heroku your-branch-name:main
 
 7. Usage: Features Of Application
 
