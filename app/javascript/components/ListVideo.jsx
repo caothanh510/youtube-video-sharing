@@ -3,6 +3,8 @@ import ReactPaginate from "react-paginate";
 import { useNotification } from "../contexts/NotificationContext";
 import { useAuth } from "../contexts/AuthContext";
 import VideoItem from "./VideoItem";
+import NoVideo from "./NoVideo";
+
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 
@@ -32,17 +34,7 @@ function ListVideo() {
   };
 
   if (videos.length === 0) {
-    return (
-      <div className="container mx-auto p-4 mt-20">
-        <div className="flex items-center justify-center">
-          <div className="flex flex-col justify-center items-center">
-            <p className="text-2xl font-semibold text-gray-500 mt-5">
-              There is no video yet
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    return <NoVideo />;
   }
 
   return (

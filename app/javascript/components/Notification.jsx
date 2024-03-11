@@ -41,7 +41,7 @@ function Notification() {
       {notification?.message && (
         <div className="fixed z-10" style={{ right: "20px", top: "100px" }}>
           <div
-            className="bg-white p-8 rounded shadow-lg"
+            className="bg-blue-100 p-8 rounded shadow-lg"
             dangerouslySetInnerHTML={{ __html: notification.message }}
           ></div>
         </div>
