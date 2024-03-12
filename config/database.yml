@@ -79,6 +79,5 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV["DATABASE_NAME"] %>
-  username: <%= ENV["DATABASE_USERNAME"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
+  database: youtube_video_sharing_app_production
+  url: <%= ENV['DATABASE_URL'] %>
