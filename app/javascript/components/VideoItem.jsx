@@ -1,6 +1,6 @@
 import React from "react";
 
-function VideoItem({ id, title, description, shared_by }) {
+function VideoItem({ id, url, title, description, shared_by }) {
   return (
     <div className="bg-gray-100 p-4 rounded-md md:flex md:flex-row mb-4">
       <div className="basis-1/2">
@@ -15,7 +15,9 @@ function VideoItem({ id, title, description, shared_by }) {
       <div className="basis-1/2">
         <div className="container mx-auto p-6 flex flex-col h-full justify-between">
           <div>
-            <h1 className="text-3xl font-bold mb-4">{title}</h1>
+            <a href={url} target="_blank">
+              <h1 className="text-3xl font-bold mb-4">{title}</h1>
+            </a>
             <div className="text-sm text-gray-600">
               <p>Shared by: {shared_by}</p>
             </div>

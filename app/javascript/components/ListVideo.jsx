@@ -40,7 +40,13 @@ function ListVideo() {
   return (
     <div className="container mx-auto p-4 mt-20">
       {videos.map((video) => {
-        return <VideoItem key={video.id} {...video.additional_data} />;
+        return (
+          <VideoItem
+            key={video.id}
+            url={video.url}
+            {...video.additional_data}
+          />
+        );
       })}
 
       <ReactPaginate
