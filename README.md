@@ -1,58 +1,76 @@
 # Youtube Video Sharing App
 
-1. Introduction: The main features of this application is:
+## Overview
 
-   - User can shares youtube video features and notification for other users
-   - Home page: Listed the youtube video users shared to show detail the description of video
+This application allows users to share YouTube videos and receive notifications about other users' shares. The home page displays a list of shared videos along with their descriptions.
 
-2. Installation & Configuration:
+## Getting Started
 
-   - Cloning the repository: `git clone git@github.com:caothanh510/youtube-video-sharing.git`
+### Prerequisites
 
-   - Installing dependencies:
-   - Gem packge: `bundle install`
-   - Node packge: `yarn install`
+Ensure you have the following installed on your local development machine:
 
-3. Database Setup:
+- Ruby
+- Node.js
+- Yarn
+- Redis
+- Docker
 
-   - Database Configuration: `config/database.yml`
+### Installation
 
-   - Database Creation: `rails db:create`
+1. Clone the repository: `git clone git@github.com:caothanh510/youtube-video-sharing.git`
 
-4. Running the Application:
+2. Install the dependencies:
 
-- Start Frontend Side: ./bin/dev
+   - Ruby gems:
 
-- Start Server Side: rails s
+   ```
+   bundle install
+   ```
 
-- Redis: redis-server
+   - Node packages:
 
-- Run spec: bundle exec rspec
+   ```
+   yarn install
+   ```
 
-6. (BE/FS) Docker Deployment:
+### Database Setup
 
-   - Setup On Local
+1. Configure the database by editing `config/database.yml`.
 
-   1. Build the Docker image: `docker compose build`
-   2. DB setup: `docker compose run --rm web bin/rails db:setup`
-   3. Run app: `docker-compose up`
+2. Create the database: `rails db:create`
 
-   - Deployment: using heroku.yml to update the config (Dockerfile.production)
+### Running the Application
 
-   1. heroku stack:set container
-   2. git push heroku your-branch-name:main
+- Start Frontend Side: `./bin/dev`
 
-7. Usage: Features Of Application
+- Start Server Side: `rails s`
 
-   - User registration and login:
+- Redis: `redis-server`
 
-     - Login: http://127.0.0.1:3000/users/sign_in
-     - SignUp: http://127.0.0.1:3000/users/sign_up
+- Run spec: `bundle exec rspec`
 
-   - Sharing YouTube videos: http://127.0.0.1:3000/share
+### Docker Deployment
 
-   - Viewing a list of shared videos: http://127.0.0.1:3000/
+#### Local Setup
 
-   - Real-time notifications for new video shares: When a user shares a new video, other logged-in users should receive a real-time notification about the newly shared video.
+1.  Build the Docker image: `docker compose build`
+2.  DB setup: `docker compose run --rm web bin/rails db:setup`
+3.  Run app: `docker-compose up`
 
-8. Troubleshooting: Please create issue while using application here: https://github.com/caothanh510/youtube-video-sharing/issues
+### Production: Dockerfile.production
+
+## Usage
+
+### Features
+
+- User registration and login:
+  - Login: http://127.0.0.1:3000/users/sign_in
+  - Sign up: http://127.0.0.1:3000/users/sign_up
+- Sharing YouTube videos: http://127.0.0.1:3000/share
+- Viewing a list of shared videos: http://127.0.0.1:3000/
+- Real-time notifications for new video shares: When a user shares a new video, other logged-in users will receive a real-time notification about the newly shared video.
+
+## Support
+
+For any issues while using the application, please create an issue on our GitHub repository: https://github.com/caothanh510/youtube-video-sharing/issues
