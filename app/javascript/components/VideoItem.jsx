@@ -9,7 +9,7 @@ function VideoItem({ id, title, description, shared_by }) {
           height="350"
           src={`https://www.youtube.com/embed/${id}`}
           title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
       </div>
       <div className="basis-1/2">

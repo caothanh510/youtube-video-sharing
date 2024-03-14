@@ -5,7 +5,11 @@ import { useAuth } from "../contexts/AuthContext";
 function ShareMovie() {
   const [url, setUrl] = useState("");
   const [message, setMessage] = useState({});
-  const { axiosInstance } = useAuth();
+  const { axiosInstance, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    window.location.href = "/users/sign_in";
+  }
 
   const handleShare = async (event) => {
     event.preventDefault();
