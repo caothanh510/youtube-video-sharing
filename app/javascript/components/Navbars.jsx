@@ -54,7 +54,7 @@ export default function Navbars() {
                     className="rounded bg-sky-500/100 text-white py-1 px-2 "
                     to="/share"
                   >
-                    Share a movie nenen
+                    Share a movie
                   </NavLink>
                   <NavLink
                     className="text-gray-300 hover:text-white px-3 py-2"
