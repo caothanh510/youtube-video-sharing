@@ -22,23 +22,6 @@ x-app: &default-app
   volumes:
     - "${DOCKER_WEB_VOLUME:-./public:/app/public}"
 
-x-assets: &default-assets
-  build:
-    context: "."
-    target: "assets"
-    args:
-      - "UID=${UID:-1000}"
-      - "GID=${GID:-1000}"
-      - "RAILS_ENV=${RAILS_ENV:-production}"
-      - "NODE_ENV=${NODE_ENV:-production}"
-  env_file:
-    - ".env"
-  profiles: ["assets"]
-  restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
-  stop_grace_period: "3s"
-  tty: true
-  volumes:
-    - ".:/app"
 version: "3.8"
 services:
   db:
@@ -68,13 +51,5 @@ services:
       REDIS_URL: redis://redis:6379
     volumes:
       - .:/app
-
-  js:
-    <<: *default-assets
-    command: "yarn build"
-
-  css:
-    <<: *default-assets
-    command: "yarn build:css"
 volumes:
   dbdata:

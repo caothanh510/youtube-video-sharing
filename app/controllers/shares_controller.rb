@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 
 class SharesController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   before_action :build_share, only: :create
 
   # GET /shares
