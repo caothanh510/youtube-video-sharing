@@ -8,7 +8,7 @@ function ShareMovie() {
   const { axiosInstance, isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    window.location.href = "/";
+    window.location.href = "/users/sign_in";
   }
 
   const handleShare = async (event) => {
